@@ -1,0 +1,50 @@
+//Chanchakorn Jullapech
+//672115007
+import java.util.*;
+import java.io.*;
+public class UndirectedGraph {
+    private final int V;
+    private int E;
+    private Map<Integer, List<Integer>> adjList;
+    
+    public UndirectedGraph(int V) {
+        this.V = V;
+        this.E = 0;
+        adjList = new HashMap<>();
+        for (int i = 0; i < V; i++) {
+            adjList.put(i, new ArrayList<>());
+        }
+    }
+
+    public void addEdge(int ver1, int ver2) {
+        adjList.get(ver1).add(ver2);
+        adjList.get(ver2).add(ver1);
+        E++;
+    }
+    public void print(){
+        for (Map.Entry<Integer, List<Integer>> input : adjList.entrySet()) {
+            int node = input.getKey();
+            List<Integer> neighbors = input.getValue();
+
+            System.out.print("Node " + node + " is connected to [ ");
+            for (int neighbor : neighbors) {
+                System.out.print(neighbor+" ");
+            }
+            System.out.print("]");
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        UndirectedGraph graph = new UndirectedGraph(6);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 4);
+        
+        graph.print();
+    }
+    
+    
+
+    
+}
